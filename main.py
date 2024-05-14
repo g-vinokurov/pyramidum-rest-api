@@ -13,6 +13,7 @@ import uuid
 
 app = FastAPI()
 
+# Unsafety setting!!!
 app.add_middleware(
     CORSMiddleware,
     allow_origins=['*'],
