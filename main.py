@@ -12,6 +12,6 @@ class Item(BaseModel):
 app = FastAPI()
 
 
-@app.get('/items/{item_id}')
-def read_item(item_id: int, q: Union[str, None] = None, response_model=Item):
+@app.get('/items/{item_id}', response_model=Item)
+def read_item(item_id: int, q: Union[str, None] = None):
     return {'item_id': item_id, 'q': q}
