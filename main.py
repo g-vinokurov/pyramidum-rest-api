@@ -144,7 +144,7 @@ def api_auth_login(request: LoginRequest):
 
 @app.get('/api/motivator/start-session', response_model=StartSessionResponse)
 def api_motivator_start_session(user_id: int):
-    return {'id': uuid.uuid5()}
+    return {'id': uuid.uuid5(uuid.NAMESPACE_DNS, 'api-motivator-start-session')}
 
 
 @app.get('/api/motivator/stop-session/{session_uuid}', response_model=StopSessionResponse)
@@ -154,18 +154,18 @@ def api_motivator_stop_session(session_uuid: UUID):
 
 @app.post('/api/tasks', response_model=CreateTaskResponse)
 def api_tasks_create(request: CreateTaskRequest):
-    return {'id': uuid.uuid5()}
+    return {'id': uuid.uuid5(uuid.NAMESPACE_DNS, 'api-tasks-create')}
 
 
 @app.put('/api/tasks', response_model=UpdateTaskResponse)
 def api_tasks_update(request: UpdateTaskRequest):
-    return {'id': uuid.uuid5()}
+    return {'id': uuid.uuid5(uuid.NAMESPACE_DNS, 'api-tasks-update')}
 
 
 @app.get('/api/tasks/{task_id}', response_model=GetTaskResponse)
 def api_tasks_get(task_id: UUID):
     return {
-        'id': uuid.uuid5(),
+        'id': uuid.uuid5(uuid.NAMESPACE_DNS, 'api-tasks-get-one'),
         'header': 'Header',
         'text': 'Text',
         'external_images': [],
@@ -174,7 +174,7 @@ def api_tasks_get(task_id: UUID):
         'is_urgen': True,
         'is_important': False,
         'owner_id': 0,
-        'parent_id': uuid.uuid5(),
+        'parent_id': uuid.uuid5(uuid.NAMESPACE_DNS, 'api-tasks-get-one-parent'),
         'possible_deadline': datetime.utcnow().timestamp(),
         'weight': 0
     }
@@ -184,7 +184,7 @@ def api_tasks_get(task_id: UUID):
 def api_tasks_get_by_user_id(user_id: int):
     return [
         {
-            'id': uuid.uuid5(),
+            'id': uuid.uuid5(uuid.NAMESPACE_DNS, 'api-tasks-get-by-user-id'),
             'header': 'Header',
             'text': 'Text',
             'external_images': [],
@@ -193,7 +193,7 @@ def api_tasks_get_by_user_id(user_id: int):
             'is_urgen': True,
             'is_important': False,
             'owner_id': 0,
-            'parent_id': uuid.uuid5(),
+            'parent_id': uuid.uuid5(uuid.NAMESPACE_DNS, 'api-tasks-get-by-user-id-parent'),
             'possible_deadline': datetime.utcnow().timestamp(),
             'weight': 0
         },
