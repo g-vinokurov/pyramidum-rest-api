@@ -1,6 +1,6 @@
 
 from fastapi import FastAPI
-from pydantic import BaseModel, field_validator
+from pydantic import BaseModel
 
 from enum import Enum
 from datetime import datetime
