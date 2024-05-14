@@ -1,1 +1,1 @@
-# pyramidum-rest-api
+# rest-api-contract
