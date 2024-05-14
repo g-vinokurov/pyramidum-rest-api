@@ -154,12 +154,12 @@ def api_motivator_stop_session(session_uuid: UUID):
 
 @app.post('/api/tasks', response_model=CreateTaskResponse)
 def api_tasks_create(request: CreateTaskRequest):
-    return {'id': uuid.uuid5(uuid.NAMESPACE_DNS, 'api-tasks-create')}
+    return {'task_id': uuid.uuid5(uuid.NAMESPACE_DNS, 'api-tasks-create')}
 
 
 @app.put('/api/tasks', response_model=UpdateTaskResponse)
 def api_tasks_update(request: UpdateTaskRequest):
-    return {'id': uuid.uuid5(uuid.NAMESPACE_DNS, 'api-tasks-update')}
+    return {'task_id': uuid.uuid5(uuid.NAMESPACE_DNS, 'api-tasks-update')}
 
 
 @app.get('/api/tasks/{task_id}', response_model=GetTaskResponse)
