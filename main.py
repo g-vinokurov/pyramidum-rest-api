@@ -70,42 +70,28 @@ class Task(BaseModel):
     header: str
     text: str
     external_images: list[str]
-    deadline: datetime
+    deadline: int
     progress_status: ProgressStatus
     is_urgent: bool
     is_important: bool
     owner_id: int
     parent_id: UUID | None = None
-    possible_deadline: datetime
+    possible_deadline: int
     weight: int
-
-    @field_validator('deadline', 'possible_deadline')
-    @classmethod
-    def dt_validate(cls, dt):
-        if dt is not None:
-            return datetime.fromtimestamp(dt)
-        return None
 
 
 class CreateTaskRequest(BaseModel):
     header: str
     text: str
     external_images: list[str]
-    deadline: datetime
+    deadline: int
     progress_status: ProgressStatus
     is_urgent: bool
     is_important: bool
     owner_id: int
     parent_id: UUID | None = None
-    possible_deadline: datetime
+    possible_deadline: int
     weight: int
-
-    @field_validator('deadline', 'possible_deadline')
-    @classmethod
-    def dt_validate(cls, dt):
-        if dt is not None:
-            return datetime.fromtimestamp(dt)
-        return None
 
 
 class CreateTaskResponse(BaseModel):
