@@ -110,20 +110,6 @@ class TaskResponse(Task):
     pass
 
 
-class TasksRequest(BaseModel):
-    user_id: int
-    search: str | None = None
-    deadline_from: date | None = None
-    deadline_to: date | None = None
-    possible_deadline_from: date | None = None
-    possible_deadline_to: date | None = None
-    progress_status: ProgressStatus | None = None
-    is_urgent: bool | None = None
-    is_important: bool | None = None
-    weight_from: int | None = None
-    weight_to: int | None = None
-
-
 class TasksResponse(BaseModel):
     tasks: list[Task]
 
@@ -155,7 +141,19 @@ def api_auth_login(request: LoginRequest):
 
 
 @app.get('/api/tasks', response_model=TasksResponse)
-def api_tasks_get_all(request: TasksRequest):
+def api_tasks_get_all(
+    user_id: int,
+    search: str | None = None,
+    deadline_from: date | None = None,
+    deadline_to: date | None = None,
+    possible_deadline_from: date | None = None,
+    possible_deadline_to: date | None = None,
+    progress_status: ProgressStatus | None = None,
+    is_urgent: bool | None = None,
+    is_important: bool | None = None,
+    weight_from: int | None = None,
+    weight_to: int | None = None,
+):
     return [
         {
             'id': uuid.uuid5(uuid.NAMESPACE_DNS, 'api-tasks-get-by-user-id'),
