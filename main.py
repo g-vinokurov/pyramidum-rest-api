@@ -154,22 +154,24 @@ def api_tasks_get_all(
     weight_from: int | None = None,
     weight_to: int | None = None,
 ):
-    return [
-        {
-            'id': uuid.uuid5(uuid.NAMESPACE_DNS, 'api-tasks-get-by-user-id'),
-            'header': 'Header',
-            'text': 'Text',
-            'external_images': [],
-            'deadline': datetime.utcnow().date(),
-            'progress_status': ProgressStatus.PROGRESS_STATUS_IN_PROGRESS,
-            'is_urgen': True,
-            'is_important': False,
-            'owner_id': 0,
-            'parent_id': uuid.uuid5(uuid.NAMESPACE_DNS, 'api-tasks-get-by-user-id-parent'),
-            'possible_deadline': datetime.utcnow().date(),
-            'weight': 0
-        },
-    ]
+    return {
+        'tasks':[
+            {
+                'id': uuid.uuid5(uuid.NAMESPACE_DNS, 'api-tasks-get-by-user-id'),
+                'header': 'Header',
+                'text': 'Text',
+                'external_images': [],
+                'deadline': datetime.utcnow().date(),
+                'progress_status': ProgressStatus.PROGRESS_STATUS_IN_PROGRESS,
+                'is_urgent': True,
+                'is_important': False,
+                'owner_id': 0,
+                'parent_id': uuid.uuid5(uuid.NAMESPACE_DNS, 'api-tasks-get-by-user-id-parent'),
+                'possible_deadline': datetime.utcnow().date(),
+                'weight': 0
+            },
+        ]
+    }
 
 
 @app.post('/api/tasks', response_model=CreateTaskResponse)
@@ -191,7 +193,7 @@ def api_tasks_get_one(task_id: UUID):
         'external_images': [],
         'deadline': datetime.utcnow().date(),
         'progress_status': ProgressStatus.PROGRESS_STATUS_IN_PROGRESS,
-        'is_urgen': True,
+        'is_urgent': True,
         'is_important': False,
         'owner_id': 0,
         'parent_id': uuid.uuid5(uuid.NAMESPACE_DNS, 'api-tasks-get-one-parent'),
